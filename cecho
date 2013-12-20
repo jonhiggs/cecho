@@ -111,6 +111,7 @@ function read_switch() {
     "-m"|"--magenta")   switch="--foreground"; value="magenta"      ;;
     "-r"|"--red")       switch="--foreground"; value="red"          ;;
     "-y"|"--yellow")    switch="--foreground"; value="yellow"       ;;
+    "--show-colors")    switch="--show-colours"                     ;;
   esac
 
   # run through the real options
