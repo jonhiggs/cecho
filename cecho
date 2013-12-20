@@ -1,0 +1,105 @@
+#!/bin/bash
+function usage() {
+cat <<EOF
+DESCRIPTION
+  Just like echo, but with some colour.
+
+USAGE
+  $(basename $0) [OPTION] [string ...]"
+
+OPTIONS
+  -n                Do not output the trailing newline
+
+  --show-colours    Show colours
+  --background      Set the background colour
+  --foreground      Set the background colour
+
+  --help            This help
+
+EOF
+exit 0
+}
+
+function colour() {
+  case "$1" in
+    "black")          echo "16" ;;
+    "blue")           echo "4"  ;;
+    "cyan")           echo "6"  ;;
+    "dark-blue")      echo "17" ;;
+    "dark-gray")      echo "8"  ;;
+    "dark-green")     echo "22" ;;
+    "dark-grey")      echo "8"  ;;
+    "green")          echo "2"  ;;
+    "grey"|"gray")    echo "7"  ;;
+    "light-blue")     echo "12" ;;
+    "light-cyan")     echo "14" ;;
+    "light-gray")     echo "7"  ;;
+    "light-green")    echo "10" ;;
+    "light-grey")     echo "7"  ;;
+    "light-magenta")  echo "13" ;;
+    "light-red")      echo "9"  ;;
+    "light-yellow")   echo "11" ;;
+    "magenta")        echo "5"  ;;
+    "pink")           echo "9"  ;;
+    "red")            echo "1"  ;;
+    "white")          echo "15" ;;
+    "yellow")         echo "3"  ;;
+    *)                echo $1   ;;
+  esac
+}
+
+function swatch() {
+  for i in {0..255}; do
+    $0 --background=$i -n "  $(printf "%03d\n" $i)  "
+
+    case $i in
+      7|15|21|27|33|39|45|57|63|69|75|81|93|99|105|111|117|129|135|141) echo ;;
+      147|153|165|171|177|183|189|201|207|245|) echo ;;
+      16|51|87|123|159|195|213) echo; echo ;;
+    esac
+  done
+
+  echo
+  exit 1
+}
+
+function read_switch() {
+  switch="$(printf -- "$1" | cut -d= -f1)"
+  value="$(printf -- "$1"  | cut -d= -f2-)"
+
+  # set switch and value for alias options
+  case "${switch}" in
+    "-b"|"--blue")      switch="--foreground"; value="blue"         ;;
+    "-c"|"--cyan")      switch="--foreground"; value="cyan"         ;;
+    "-g"|"--green")     switch="--foreground"; value="green"        ;;
+    "-G"|"--grey")      switch="--foreground"; value="grey"         ;;
+    "-m"|"--magenta")   switch="--foreground"; value="magenta"      ;;
+    "-r"|"--red")       switch="--foreground"; value="red"          ;;
+    "-y"|"--yellow")    switch="--foreground"; value="yellow"       ;;
+  esac
+
+  # run through the real options
+  case "${switch}" in
+    "--foreground")     foreground=$(tput setaf $(colour ${value})) ;;
+    "--background")     background=$(tput setab $(colour ${value})) ;;
+    "--show-colours")   swatch                                      ;;
+    "-n")               newline=""                                  ;;
+    "--help")           usage                                       ;;
+    *)
+      if [[ -z "${string}" ]]; then
+        string=$1
+      else
+        string="${string} $1"
+      fi
+    ;;
+  esac
+}
+
+newline="\n"          # add a new line to the string by default. negate with -n
+reset=$(tput sgr0)
+
+for arg in "$@"; do
+  read_switch "${arg}"
+done
+
+printf -- "${foreground}${background}${string}${reset}${newline}"
