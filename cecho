@@ -8,13 +8,48 @@ USAGE
   $(basename $0) [OPTION] [string ...]"
 
 OPTIONS
-  -n                Do not output the trailing newline
+  -n                Do not output the trailing newline.
 
-  --show-colours    Show colours
-  --background      Set the background colour
-  --foreground      Set the background colour
+  --show-colours    Show available colours.
+  --background      Set the background colour.
+  --foreground      Set the background colour.
 
-  --help            This help
+  --black           Shorthand for setting foreground to black.
+  --blue            Shorthand for setting foreground to blue.
+  --cyan            Shorthand for setting foreground to cyan.
+  --dark-blue       Shorthand for setting foreground to dark-blue.
+  --dark-gray       Shorthand for setting foreground to dark-gray.
+  --dark-green      Shorthand for setting foreground to dark-green.
+  --dark-grey       Shorthand for setting foreground to dark-grey.
+  --green           Shorthand for setting foreground to green.
+  --grey            Shorthand for setting foreground to grey.
+  --light-blue      Shorthand for setting foreground to light-blue.
+  --light-cyan      Shorthand for setting foreground to light-cyan.
+  --light-green     Shorthand for setting foreground to light-green.
+  --light-grey      Shorthand for setting foreground to light-grey.
+  --light-magenta   Shorthand for setting foreground to light-magenta.
+  --light-red       Shorthand for setting foreground to light-red.
+  --light-yellow    Shorthand for setting foreground to light-yellow.
+  --magenta         Shorthand for setting foreground to magenta.
+  --pink            Shorthand for setting foreground to pink.
+  --red             Shorthand for setting foreground to red.
+  --white           Shorthand for setting foreground to white.
+  --yellow          Shorthand for setting foreground to yellow.
+
+  --help            This help.
+
+EXAMPLES
+  Show available colours:
+  $0 --show-colours
+
+  Set foreground to red
+  $0 --red "string to echo"
+
+  Set background to blue and foreground to white
+  $0 --background=blue --foreground=white "string to echo"
+
+  Set the background to a specific colour
+  $0 --background=170 "string to echo"
 
 EOF
 exit 0
