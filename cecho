@@ -11,6 +11,7 @@ OPTIONS
   -n                Do not output the trailing newline.
 
   --centre          Center the text in the terminal.
+  --doublespace     Add spaces between eache of the letters.
 
   --show-colours    Show available colours.
   --background      Set the background colour.
@@ -126,6 +127,7 @@ function read_switch() {
     "--foreground")     foreground=$(tput setaf $(colour ${value})) ;;
     "--background")     background=$(tput setab $(colour ${value})) ;;
     "--centre")         centre=true                                 ;;
+    "--doublespace")    doublespace=true                            ;;
     "--show-colours")   swatch                                      ;;
     "-n")               newline=""                                  ;;
     "--help")           usage                                       ;;
@@ -152,13 +154,19 @@ function centre() {
   echo $@
 }
 
+function doublespace() {
+  echo $@ | sed -E "s/(.)/\1 /g"
+}
+
 newline="\n"          # add a new line to the string by default. Negate with -n
 reset=$(tput sgr0)
 centre=false
+doublespace=false
 
 for arg in "$@"; do
   read_switch "${arg}"
 done
 
+${doublespace} && string=$(doublespace ${string})
 ${centre} && string=$(centre ${string})
 printf -- "${foreground}${background}${string}${reset}${newline}"
