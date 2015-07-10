@@ -131,7 +131,7 @@ function read_switch() {
   esac
 }
 
-newline="\n"          # add a new line to the string by default. negate with -n
+newline="\n"          # add a new line to the string by default. Negate with -n
 reset=$(tput sgr0)
 
 for arg in "$@"; do
