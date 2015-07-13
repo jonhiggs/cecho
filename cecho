@@ -118,6 +118,18 @@ function read_switch() {
     "-m"|"--magenta")   switch="--foreground"; value="magenta"      ;;
     "-r"|"--red")       switch="--foreground"; value="red"          ;;
     "-y"|"--yellow")    switch="--foreground"; value="yellow"       ;;
+    "--light-blue")     switch="--foreground"; value="light-blue"   ;;
+    "--light-cyan")     switch="--foreground"; value="light-cyan"   ;;
+    "--light-gray")     switch="--foreground"; value="light-gray"   ;;
+    "--light-green")    switch="--foreground"; value="light-green"  ;;
+    "--light-grey")     switch="--foreground"; value="light-grey"   ;;
+    "--light-magenta")  switch="--foreground"; value="light-magenta";;
+    "--light-red")      switch="--foreground"; value="light-red"    ;;
+    "--light-yellow")   switch="--foreground"; value="light-yellow" ;;
+    "--dark-blue")      switch="--foreground"; value="dark-blue"    ;;
+    "--dark-gray")      switch="--foreground"; value="dark-gray"    ;;
+    "--dark-green")     switch="--foreground"; value="dark-green"   ;;
+    "--dark-grey")      switch="--foreground"; value="dark-grey"    ;;
     "--show-colors")    switch="--show-colours"                     ;;
     "-C"|"--center")    switch="--centre"                           ;;
   esac
