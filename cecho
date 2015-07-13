@@ -139,6 +139,9 @@ function read_switch() {
     "--foreground")     foreground=$(tput setaf $(colour ${value})) ;;
     "--background")     background=$(tput setab $(colour ${value})) ;;
     "--centre")         centre=true                                 ;;
+    "--margin")         margin_left=${value}; margin_right=${value} ;;
+    "--margin-left")    margin_left=${value};                       ;;
+    "--margin-right")   margin_right=${value};                      ;;
     "--doublespace")    doublespace=true                            ;;
     "--show-colours")   swatch                                      ;;
     "-n")               newline=""                                  ;;
@@ -170,15 +173,32 @@ function doublespace() {
   echo $@ | sed -E "s/(.)/\1 /g"
 }
 
+function add_margins() {
+  local left_margin=""
+  local right_margin=""
+  if [[ $margin_left -ne 0 ]]; then
+    for n in $(seq $margin_left); do left_margin+=" "; done
+  fi
+
+  if [[ $margin_right -ne 0 ]]; then
+    for n in $(seq $margin_right); do right_margin+=" "; done
+  fi
+
+  echo "$@" | sed "s/^/${left_margin}/" | sed "s/$/${right_margin}/"
+}
+
 newline="\n"          # add a new line to the string by default. Negate with -n
 reset=$(tput sgr0)
 centre=false
 doublespace=false
+margin_left=0
+margin_right=0
 
 for arg in "$@"; do
   read_switch "${arg}"
 done
 
+string=$(add_margins ${string})
 ${doublespace} && string=$(doublespace "${string}")
 ${centre} && string=$(centre "${string}")
 printf -- "${foreground}${background}${string}${reset}${newline}"
