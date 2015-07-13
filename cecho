@@ -151,7 +151,7 @@ function centre() {
   for n in $(seq $str_start_col); do
      printf " "
   done
-  echo $@
+  echo "$@"
 }
 
 function doublespace() {
