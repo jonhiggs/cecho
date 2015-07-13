@@ -142,14 +142,14 @@ function read_switch() {
 }
 
 function centre() {
+  string="$@"
   local cols=$(tput cols)
-  local rows=$(tput lines)
-
-  echo "$@" |while read l; do
-    local foo="$@"
-    for (( i=0; i<$((($cols - ${#foo}) / 2)); i++ )); do
-      printf " "
-    done
+  local str_length=${#string}
+  local col_middle=$(( $cols / 2 ))
+  local str_middle=$(( $str_length / 2 ))
+  local str_start_col=$(( $col_middle - $str_middle ))
+  for n in $(seq $str_start_col); do
+     printf " "
   done
   echo $@
 }
@@ -167,6 +167,6 @@ for arg in "$@"; do
   read_switch "${arg}"
 done
 
-${doublespace} && string=$(doublespace ${string})
-${centre} && string=$(centre ${string})
+${doublespace} && string=$(doublespace "${string}")
+${centre} && string=$(centre "${string}")
 printf -- "${foreground}${background}${string}${reset}${newline}"
