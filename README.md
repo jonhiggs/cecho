@@ -14,6 +14,8 @@ It should run on any Unix OS. If you notice any problems let me know.
 | Option          |  Function                                                 |
 | --------------- | --------------------------------------------------------- |
 | -n              |  Do not output the trailing newline.                      |
+| --centre        |  Centre the text in the terminal.                         |
+| --doublespace   |  Add spaces between each of the letters                   |
 |                 |                                                           |
 | --show-colours  |  Show available colours.                                  |
 | --background    |  Set the background colour.                               |
