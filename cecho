@@ -11,7 +11,7 @@ OPTIONS
   -n                Do not output the trailing newline.
 
   --centre          Center the text in the terminal.
-  --doublespace     Add spaces between eache of the letters.
+  --doublespace     Add spaces between each of the letters.
 
   --show-colours    Show available colours.
   --background      Set the background colour.
