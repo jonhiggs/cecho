@@ -1,4 +1,6 @@
 #!/bin/bash
+VERSION="v0.1"
+
 function usage() {
 cat <<EOF
 DESCRIPTION:
@@ -40,6 +42,7 @@ OPTIONS:
   --yellow          Shorthand for setting foreground to yellow.
 
   --help            This help.
+  --version         The version of cecho.
 
 EXAMPLES:
   Show available colours:
@@ -146,6 +149,7 @@ function read_switch() {
     "--show-colours")   swatch                                      ;;
     "-n")               newline=""                                  ;;
     "--help")           usage                                       ;;
+    "--version")        echo ${VERSION} && exit 0                   ;;
     *)
       if [[ -z "${string}" ]]; then
         string=$1

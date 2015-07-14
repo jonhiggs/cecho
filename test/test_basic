@@ -4,10 +4,10 @@ source $(dirname $0)/functions.inc
 function testSwitches() {
   __run --help
   assertEquals "help exit status"    "0"                         "$status"
-  assertEquals "help stdout"         "DESCRIPTION:"                    "$(head -n1 ${stdout_file})"
+  assertEquals "help stdout"         "DESCRIPTION:"              "$(head -n1 ${stdout_file})"
 
-  #__run --version
-  #assertEquals "version stdout"         "0"                      "$(cat ${stdout_file} | grep -E '^v[0-9]+\.[0-9]\.[0-9]$' &> /dev/null; echo $?)"
+  __run --version
+  assertEquals "version stdout"      "0"                         "$(cat ${stdout_file} | grep -c -E '^v[0-9]+\.[0-9\.]+$' &> /dev/null; echo $?)"
 
   #__run
   #assertEquals "no_arguments exit status"    "0"                 "$status"
