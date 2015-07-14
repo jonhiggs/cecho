@@ -18,6 +18,10 @@ It should run on any Unix OS. If you notice any problems let me know.
 | --right         |  Align the text to the right side of terminal.            |
 | --doublespace   |  Add spaces between each of the letters                   |
 |                 |                                                           |
+| --margin        | Set the width of the left and right margins.              |
+| --margin-left   | Set the width of the left margin.                         |
+| --margin-right  | Set the width of the right margin.                        |
+|                 |                                                           |
 | --show-colours  |  Show available colours.                                  |
 | --background    |  Set the background colour.                               |
 | --foreground    |  Set the background colour.                               |
