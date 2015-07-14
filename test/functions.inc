@@ -1,3 +1,11 @@
+function __stdout() {
+  cat ${stdout_file}
+}
+
+function __stdout_md5() {
+  __stdout | md5 | grep -o ^.... | head -n1
+}
+
 function __run() {
   ${cecho} $@ > ${stdout_file} 2> ${stderr_file}
   status=$?
