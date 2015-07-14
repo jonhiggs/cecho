@@ -13,6 +13,7 @@ OPTIONS:
   -n                Do not output the trailing newline.
 
   --centre          Center the text in the terminal.
+  --right           Align the text to the right side of terminal.
   --doublespace     Add spaces between each of the letters.
 
   --show-colours    Show available colours.
@@ -135,13 +136,15 @@ function read_switch() {
     "--dark-grey")      switch="--foreground"; value="dark-grey"    ;;
     "--show-colors")    switch="--show-colours"                     ;;
     "-C"|"--center")    switch="--centre"                           ;;
+    "-R")               switch="--right"                            ;;
   esac
 
   # run through the real options
   case "${switch}" in
     "--foreground")     foreground=$(tput setaf $(colour ${value})) ;;
     "--background")     background=$(tput setab $(colour ${value})) ;;
-    "--centre")         centre=true                                 ;;
+    "--centre")         align="centre"                              ;;
+    "--right")          align="right"                               ;;
     "--margin")         margin_left=${value}; margin_right=${value} ;;
     "--margin-left")    margin_left=${value};                       ;;
     "--margin-right")   margin_right=${value};                      ;;
@@ -160,13 +163,24 @@ function read_switch() {
   esac
 }
 
-function centre() {
+function align_centre() {
   string="$@"
   [[ ! -z ${COLS} ]] || COLS=$(tput cols)
   local str_length=${#string}
   local col_middle=$(( $COLS / 2 ))
   local str_middle=$(( $str_length / 2 ))
   local str_start_col=$(( $col_middle - $str_middle ))
+  for n in $(seq $str_start_col); do
+     printf " "
+  done
+  echo "$@"
+}
+
+function align_right() {
+  string="$@"
+  [[ ! -z ${COLS} ]] || COLS=$(tput cols)
+  local str_length=${#string}
+  local str_start_col=$(( $COLS - $str_length ))
   for n in $(seq $str_start_col); do
      printf " "
   done
@@ -193,7 +207,7 @@ function add_margins() {
 
 newline="\n"          # add a new line to the string by default. Negate with -n
 reset=$(tput sgr0)
-centre=false
+align="left"
 doublespace=false
 margin_left=0
 margin_right=0
@@ -204,5 +218,6 @@ done
 
 string=$(add_margins ${string})
 ${doublespace} && string=$(doublespace "${string}")
-${centre} && string=$(centre "${string}")
+[[ $align == "centre" ]] && string=$(align_centre "${string}")
+[[ $align == "right" ]] && string=$(align_right "${string}")
 printf -- "${foreground}${background}${string}${reset}${newline}"
