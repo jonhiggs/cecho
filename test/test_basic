@@ -49,10 +49,9 @@ function testPositioning() {
   assertEquals "when --margin=3"       "cb39" "$(__run --margin "blah"; __stdout_md5)"
 }
 
-#    "--margin")         margin_left=${value}; margin_right=${value} ;;
-#    "--margin-left")    margin_left=${value};                       ;;
-#    "--margin-right")   margin_right=${value};                      ;;
-#    "--doublespace")    doublespace=true                            ;;
+function testStyle() {
+  assertEquals "when --doublespace"    "3b14" "$(__run --doublespace "blah with spaces"; __stdout_md5)"
+}
 
 # load and run shUnit2
 source $(dirname $0)/shunit/src/shunit2
