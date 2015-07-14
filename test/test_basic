@@ -14,6 +14,46 @@ function testSwitches() {
   assertEquals "version stdout"             "0"                 "$(__stdout | grep -c -E '^v[0-9]+\.[0-9\.]+$' &> /dev/null; echo $?)"
 }
 
+function testColouredStrings() {
+  __run --background="red" "blah"
+  assertEquals "when --background=red" "2e15" "$(__run --background=red "blah"; __stdout_md5)"
+  assertEquals "when --foreground=red" "af36" "$(__run --foreground=red "blah"; __stdout_md5)"
+  assertEquals "when --black"          "8ba7" "$(__run --black "blah"; __stdout_md5)"
+  assertEquals "when --blue"           "f1ed" "$(__run --blue "blah"; __stdout_md5)"
+  assertEquals "when --cyan"           "9eef" "$(__run --cyan "blah"; __stdout_md5)"
+  assertEquals "when --dark-blue"      "c3da" "$(__run --dark-blue "blah"; __stdout_md5)"
+  assertEquals "when --dark-gray"      "a0b8" "$(__run --dark-gray "blah"; __stdout_md5)"
+  assertEquals "when --dark-green"     "4bdd" "$(__run --dark-green "blah"; __stdout_md5)"
+  assertEquals "when --dark-grey"      "a0b8" "$(__run --dark-grey "blah"; __stdout_md5)"
+  assertEquals "when --green"          "3d68" "$(__run --green "blah"; __stdout_md5)"
+  assertEquals "when --grey"           "8f6e" "$(__run --grey "blah"; __stdout_md5)"
+  assertEquals "when --light-blue"     "2e10" "$(__run --light-blue "blah"; __stdout_md5)"
+  assertEquals "when --light-cyan"     "4539" "$(__run --light-cyan "blah"; __stdout_md5)"
+  assertEquals "when --light-green"    "f553" "$(__run --light-green "blah"; __stdout_md5)"
+  assertEquals "when --light-grey"     "8f6e" "$(__run --light-grey "blah"; __stdout_md5)"
+  assertEquals "when --light-magenta"  "2c12" "$(__run --light-magenta "blah"; __stdout_md5)"
+  assertEquals "when --light-red"      "2098" "$(__run --light-red "blah"; __stdout_md5)"
+  assertEquals "when --light-yellow"   "6ab4" "$(__run --light-yellow "blah"; __stdout_md5)"
+  assertEquals "when --magenta"        "0aa0" "$(__run --magenta "blah"; __stdout_md5)"
+  assertEquals "when --pink"           "e4cf" "$(__run --pink "blah"; __stdout_md5)"
+  assertEquals "when --red"            "af36" "$(__run --red "blah"; __stdout_md5)"
+  assertEquals "when --white"          "e5c5" "$(__run --white "blah"; __stdout_md5)"
+  assertEquals "when --yellow"         "3db9" "$(__run --yellow "blah"; __stdout_md5)"
+}
+
+function testPositioning() {
+  export COLS=80
+  assertEquals "when --center"         "ce57" "$(__run --center "blah"; __stdout_md5)"
+  assertEquals "when --margin-left=3"  "fea1" "$(__run --margin-left=3 "blah"; __stdout_md5)"
+  assertEquals "when --margin-right=3" "f3f9" "$(__run --margin-right=3 "blah"; __stdout_md5)"
+  assertEquals "when --margin=3"       "cb39" "$(__run --margin "blah"; __stdout_md5)"
+}
+
+#    "--margin")         margin_left=${value}; margin_right=${value} ;;
+#    "--margin-left")    margin_left=${value};                       ;;
+#    "--margin-right")   margin_right=${value};                      ;;
+#    "--doublespace")    doublespace=true                            ;;
+
 # load and run shUnit2
 source $(dirname $0)/shunit/src/shunit2
 
