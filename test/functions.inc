@@ -7,7 +7,7 @@ function __stdout_md5() {
 }
 
 function __run() {
-  ${cecho} $@ > ${stdout_file} 2> ${stderr_file}
+  ${cecho} "$@" > ${stdout_file} 2> ${stderr_file}
   status=$?
   stdout=$(cat ${stdout_file})
   stderr=$(cat ${stderr_file})
