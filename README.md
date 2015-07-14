@@ -15,6 +15,7 @@ It should run on any Unix OS. If you notice any problems let me know.
 | --------------- | --------------------------------------------------------- |
 | -n              |  Do not output the trailing newline.                      |
 | --centre        |  Centre the text in the terminal.                         |
+| --right         |  Align the text to the right side of terminal.            |
 | --doublespace   |  Add spaces between each of the letters                   |
 |                 |                                                           |
 | --show-colours  |  Show available colours.                                  |
