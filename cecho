@@ -1,13 +1,13 @@
 #!/bin/bash
 function usage() {
 cat <<EOF
-DESCRIPTION
+DESCRIPTION:
   Just like echo, but with some colour.
 
-USAGE
+USAGE:
   $(basename $0) [OPTION] [string ...]
 
-OPTIONS
+OPTIONS:
   -n                Do not output the trailing newline.
 
   --centre          Center the text in the terminal.
@@ -41,7 +41,7 @@ OPTIONS
 
   --help            This help.
 
-EXAMPLES
+EXAMPLES:
   Show available colours:
   $0 --show-colours
 
