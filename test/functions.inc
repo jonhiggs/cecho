@@ -9,7 +9,7 @@ function oneTimeSetUp() {
   realpath=$(which realpath || which grealpath)
   running_dir=$(${realpath} -- $(dirname $0))
   test_dir=$(${realpath} -- $(mktemp -d -t cecho.XXX))
-  cecho="${running_dir}/../echo"
+  cecho="${running_dir}/../cecho"
   stdout_file="${test_dir}/stdout"
   stderr_file="${test_dir}/stderr"
 }
