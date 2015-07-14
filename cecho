@@ -5,7 +5,7 @@ DESCRIPTION
   Just like echo, but with some colour.
 
 USAGE
-  $(basename $0) [OPTION] [string ...]"
+  $(basename $0) [OPTION] [string ...]
 
 OPTIONS
   -n                Do not output the trailing newline.
