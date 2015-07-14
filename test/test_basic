@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+source $(dirname $0)/functions.inc
+
+function testSwitches() {
+  __run --help
+  assertEquals "help exit status"    "0"                         "$status"
+  assertEquals "help stdout"         "USAGE:"                    "$(head -n1 ${stdout_file})"
+
+  #__run --version
+  #assertEquals "version stdout"         "0"                      "$(cat ${stdout_file} | grep -E '^v[0-9]+\.[0-9]\.[0-9]$' &> /dev/null; echo $?)"
+
+  #__run
+  #assertEquals "no_arguments exit status"    "0"                 "$status"
+  #assertEquals "no_arguments stdout"         "USAGE:"            "$(head -n1 ${stdout_file})"
+
+  #__run ${test_dir}/1/
+  #assertEquals "no_action exit status"    "0"                    "$status"
+  #assertEquals "no_action stdout"         "${test_dir}/1/"      "$stdout"
+}
+
+# load and run shUnit2
+source $(dirname $0)/shunit/src/shunit2
+
+# vim: ai ts=2 sw=2 et sts=2 ft=sh
