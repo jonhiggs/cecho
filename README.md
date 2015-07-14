@@ -1,13 +1,13 @@
 # cecho
 
 ### Description
-Just like echo, but with some colour.
+Just like echo but colourful, formatted and stylish.
 
 ### Requirements
 It should run on any Unix OS. If you notice any problems let me know.
 
 ### Usage
-`cecho [OPTION] [string ...]"`
+`cecho [OPTIONS] [string ...]"`
 
 ### Options
 
