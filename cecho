@@ -154,7 +154,7 @@ function read_switch() {
     "--margin-right")   margin_right=${value};                      ;;
     "--doublespace")    doublespace=true                            ;;
     "--show-colours")   swatch                                      ;;
-    "-n")               newline=""                                  ;;
+    "-n")               line_ending=""                              ;;
     "--help")           usage                                       ;;
     "--version")        echo ${VERSION} && exit 0                   ;;
     *)
@@ -209,12 +209,13 @@ function add_margins() {
   echo "$@" | sed "s/^/${left_margin}/" | sed "s/$/${right_margin}/"
 }
 
-newline="\n"          # add a new line to the string by default. Negate with -n
-reset=$(tput sgr0)
+### DEFAULTS ##################################################################
 align="left"
 doublespace=false
+line_ending="\n"
 margin_left=0
 margin_right=0
+###############################################################################
 
 for arg in "$@"; do
   read_switch "${arg}"
@@ -224,4 +225,4 @@ string=$(add_margins "${string}")
 ${doublespace} && string=$(doublespace "${string}")
 [[ $align == "centre" ]] && string=$(align_centre "${string}")
 [[ $align == "right" ]] && string=$(align_right "${string}")
-printf -- "${foreground}${background}${string}${reset}${newline}"
+printf -- "${foreground}${background}${string}$(tput sgr0)${line_ending}"
