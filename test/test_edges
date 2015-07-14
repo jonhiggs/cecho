@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+source $(dirname $0)/functions.inc
+
+function testVanilla() {
+  __run "   blah"
+  assertEquals "when string starts with whitespace"   "fea1"  "$(__stdout_md5)"
+
+  __run --unknown "blah"
+  assertEquals "print unsupported string"             "0dbe"  "$(__stdout_md5)"
+}
+
+# load and run shUnit2
+source $(dirname $0)/shunit/src/shunit2
+
+# vim: ai ts=2 sw=2 et sts=2 ft=sh
