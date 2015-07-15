@@ -14,6 +14,14 @@ function testDoublespace() {
   assertEquals "should not end in space"              "1e2a"  "$(__stdout_md5)"
 }
 
+function testQuoting() {
+  __run --inline "{B_green}green{B_red} now it's red"
+  assertEquals  "should not crap out with a single quote" "f87b" "$(__stdout_md5)"
+
+  __run --inline "{B_green}green{B_red} now it\"s red"
+  assertEquals  "should not crap out with a double quote" "e804" "$(__stdout_md5)"
+}
+
 # load and run shUnit2
 source $(dirname $0)/shunit/src/shunit2
 
