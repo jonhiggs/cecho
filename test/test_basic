@@ -43,9 +43,9 @@ function testColouredStrings() {
 
 function testInlineColourChanges() {
   assertEquals "{F_blue}blue"           "7ab7" "$(__run "{F_blue}blue"; __stdout_md5)"
-  assertEquals "inline {F_blue}blue"    "f717" "$(__run --inline "{F_blue}blue"; __stdout_md5)"
+  assertEquals "--inline {F_blue}blue"  "f717" "$(__run --inline "{F_blue}blue"; __stdout_md5)"
   assertEquals "{B_blue}blue"           "d5c3" "$(__run "{B_blue}blue"; __stdout_md5)"
-  assertEquals "inline {B_blue}blue"    "890f" "$(__run --inline "{B_blue}blue"; __stdout_md5)"
+  assertEquals "--inline {B_blue}blue"  "890f" "$(__run --inline "{B_blue}blue"; __stdout_md5)"
 }
 
 function testPositioning() {
