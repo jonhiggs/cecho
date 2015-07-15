@@ -11,6 +11,7 @@ USAGE:
 
 OPTIONS:
   -n                Do not output the trailing newline.
+  --inline          Allow inline colour changes.
 
   --centre          Center the text in the terminal.
   --right           Align the text to the right side of terminal.
@@ -141,6 +142,7 @@ function read_switch() {
     "--show-colors")    switch="--show-colours"                     ;;
     "-C"|"--center")    switch="--centre"                           ;;
     "-R")               switch="--right"                            ;;
+    "-I")               switch="--inline"                           ;;
   esac
 
   # run through the real options
@@ -155,6 +157,7 @@ function read_switch() {
     "--doublespace")    doublespace=true                            ;;
     "--show-colours")   swatch                                      ;;
     "-n")               line_ending=""                              ;;
+    "--inline")         inline=true                                 ;;
     "--help")           usage                                       ;;
     "--version")        echo ${VERSION} && exit 0                   ;;
     *)
@@ -165,6 +168,21 @@ function read_switch() {
       fi
     ;;
   esac
+}
+
+function sub_inline_colour() {
+  string=$@
+  string=$(echo "$string" | sed -E "s/{F_([^}]+)}/\$\(colour_foreground \1\)/g")
+  string=$(echo "$string" | sed -E "s/{B_([^}]+)}/\$\(colour_background \1\)/g")
+  eval "echo ${string}"
+}
+
+function colour_foreground() {
+  tput setaf $(colour $1)
+}
+
+function colour_background() {
+  tput setab $(colour $1)
 }
 
 function align_centre() {
@@ -216,6 +234,7 @@ function add_margins() {
 ### DEFAULTS ##################################################################
 align="left"
 doublespace=false
+inline=false
 line_ending="\n"
 margin_left=0
 margin_right=0
@@ -225,6 +244,7 @@ for arg in "$@"; do
   read_switch "${arg}"
 done
 
+${inline} && string=$(sub_inline_colour "${string}")
 string=$(add_margins "${string}")
 ${doublespace} && string=$(doublespace "${string}")
 [[ $align == "centre" ]] && string=$(align_centre "${string}")
