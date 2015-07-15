@@ -9,6 +9,11 @@ function testVanilla() {
   assertEquals "print unsupported string"             "0dbe"  "$(__stdout_md5)"
 }
 
+function testDoublespace() {
+  __run --right --doublespace "blah"
+  assertEquals "should not end in space"              "1e2a"  "$(__stdout_md5)"
+}
+
 # load and run shUnit2
 source $(dirname $0)/shunit/src/shunit2
 
