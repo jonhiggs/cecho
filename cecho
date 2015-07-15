@@ -147,8 +147,8 @@ function read_switch() {
 
   # run through the real options
   case "${switch}" in
-    "--foreground")     foreground=$(tput setaf $(colour ${value})) ;;
-    "--background")     background=$(tput setab $(colour ${value})) ;;
+    "--foreground")     foreground=$(colour_foreground ${value})    ;;
+    "--background")     background=$(colour_background ${value})    ;;
     "--centre")         align="centre"                              ;;
     "--right")          align="right"                               ;;
     "--margin")         margin_left=${value}; margin_right=${value} ;;
