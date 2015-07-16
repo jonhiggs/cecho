@@ -50,6 +50,9 @@ OPTIONS:
   --help            This help.
   --version         The version of cecho.
 
+INLINE:
+  Need to write documentation on inline colour substitutions.
+
 EXAMPLES:
   Show available colours:
   $0 --show-colours
@@ -95,7 +98,7 @@ function colour() {
     "red")            echo "1"  ;;
     "white")          echo "15" ;;
     "yellow")         echo "3"  ;;
-    *)                echo $1   ;;
+    "reset")          tput sgr0 ;;
   esac
 }
 
@@ -174,6 +177,7 @@ function sub_inline_colour() {
   string=$@
   string=$(echo "$string" | sed -E "s/{F_([^}]+)}/\$\(colour_foreground \1\)/g")
   string=$(echo "$string" | sed -E "s/{B_([^}]+)}/\$\(colour_background \1\)/g")
+  string=$(echo "$string" | sed -E "s/{reset}/\$\(colour reset)/g")
   string=$(echo "$string" | sed -E 's/"/\\\"/g')
   eval "echo \"${string}\""
 }
