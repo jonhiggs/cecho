@@ -174,7 +174,7 @@ function read_switch() {
 }
 
 function sub_inline_colour() {
-  string=$@
+  string="$@"
   string=$(echo "$string" | sed -E "s/{F_([^}]+)}/\$\(colour_foreground \1\)/g")
   string=$(echo "$string" | sed -E "s/{B_([^}]+)}/\$\(colour_background \1\)/g")
   string=$(echo "$string" | sed -E "s/{reset}/\$\(colour reset)/g")

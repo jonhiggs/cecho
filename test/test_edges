@@ -7,6 +7,10 @@ function testVanilla() {
 
   __run --unknown "blah"
   assertEquals "print unsupported string"             "0dbe"  "$(__stdout_md5)"
+
+  __run --I "inline    extra whitespace"
+  assertEquals "inline with extra whitespace"         "fee7"  "$(__stdout_md5)"
+
 }
 
 function testDoublespace() {
