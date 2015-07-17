@@ -179,7 +179,7 @@ function sub_inline_colour() {
   string=$(echo "$string" | sed -E "s/{B_([^}]+)}/\$\(colour_background \1\)/g")
   string=$(echo "$string" | sed -E "s/{reset}/\$\(colour reset)/g")
   string=$(echo "$string" | sed -E 's/"/\\\"/g')
-  eval "echo \"${string}\""
+  eval "echo \"${string}\"" | sed 's/{\ *}//g'
 }
 
 function colour_foreground() {
