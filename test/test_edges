@@ -16,6 +16,9 @@ function testVanilla() {
 function testDoublespace() {
   __run --right --doublespace "blah"
   assertEquals "should not end in space"              "1e2a"  "$(__stdout_md5)"
+
+  __run --margin=40 --doublespace "blah"
+  assertEquals "with a margin"                        "5110"  "$(__stdout_md5)"
 }
 
 function testQuoting() {
