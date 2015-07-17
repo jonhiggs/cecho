@@ -59,8 +59,15 @@ function testPositioning() {
   assertEquals "when --margin=3"       "cb39" "$(__run --margin "blah"; __stdout_md5)"
 }
 
-function testStyle() {
-  assertEquals "when --doublespace"    "3b14" "$(__run --doublespace "blah with spaces"; __stdout_md5)"
+function testDoublespace() {
+  __run --doublespace "blah with spaces"
+  assertEquals "when --doublespace"                   "3b14"  "$(__stdout_md5)"
+
+  __run --right --doublespace "blah"
+  assertEquals "should not end in space"              "1e2a"  "$(__stdout_md5)"
+
+  __run --margin=40 --doublespace "blah"
+  assertEquals "with a margin"                        "5110"  "$(__stdout_md5)"
 }
 
 # load and run shUnit2
