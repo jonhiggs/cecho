@@ -53,6 +53,9 @@ OPTIONS:
 INLINE:
   Need to write documentation on inline colour substitutions.
 
+ENVIRONMENT_VARIABLES:
+  Need to write this documentation too.
+
 EXAMPLES:
   Show available colours:
   $0 --show-colours
