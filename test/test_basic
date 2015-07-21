@@ -55,7 +55,7 @@ function testPositioning() {
   assertEquals "when --center"         "ce57" "$(__run --center "blah"; __stdout_md5)"
   assertEquals "when --right"          "9deb" "$(__run --right "blah"; __stdout_md5)"
   assertEquals "when --margin-left=3"  "fea1" "$(__run --margin-left=3 "blah"; __stdout_md5)"
-  assertEquals "when --margin-right=3" "f3f9" "$(__run --margin-right=3 "blah"; __stdout_md5)"
+  assertEquals "when --margin-right=3" "cb39" "$(__run --margin-right=3 "blah"; __stdout_md5)"
   assertEquals "when --margin=3"       "cb39" "$(__run --margin "blah"; __stdout_md5)"
 }
 
@@ -67,8 +67,11 @@ function testDoublespace() {
   assertEquals "should not end in space"              "1e2a"  "$(__stdout_md5)"
 
   __run --margin=40 --doublespace "blah"
-  assertEquals "with a margin"                        "5110"  "$(__stdout_md5)"
+  assertEquals "with a margin"                        "aba4"  "$(__stdout_md5)"
 }
+
+# BROKEN TESTS
+# ./cecho --right --margin-right=79 "blah blah blah blahsoei soeifj osei josei "
 
 # load and run shUnit2
 source $(dirname $0)/shunit/src/shunit2

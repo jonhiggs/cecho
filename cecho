@@ -218,17 +218,28 @@ function doublespace() {
 }
 
 function add_margins() {
-  local left_margin=""
-  local right_margin=""
-  if [[ $margin_left -ne 0 ]]; then
-    for n in $(seq $margin_left); do left_margin+=" "; done
-  fi
+  local text_width=$(( $(tput cols) - ${margin_left} - ${margin_right} ))
+  local m=""
 
-  if [[ $margin_right -ne 0 ]]; then
-    for n in $(seq $margin_right); do right_margin+=" "; done
-  fi
+  case $align in
+    "left")
+      if [[ $margin_left -ne 0 ]]; then
+        for n in $(seq $margin_left); do m+=" "; done
+      fi
 
-  echo "$@" | sed "s/^/${left_margin}/" | sed "s/$/${right_margin}/"
+      echo "${@}" | fold -w ${text_width} -s | sed "s/^/$m/"
+      ;;
+
+    "centre") align_centre "$@";;
+
+    "right")
+      if [[ $margin_right -ne 0 ]]; then
+        for n in $(seq $margin_right); do m+=" "; done
+      fi
+
+      echo "${@}" | sed "s/$/$m/"
+      ;;
+  esac
 }
 
 ### DEFAULTS ##################################################################
