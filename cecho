@@ -102,6 +102,7 @@ function colour() {
     "white")          echo "15" ;;
     "yellow")         echo "3"  ;;
     "reset")          tput sgr0 ;;
+    *)                echo $1   ;;
   esac
 }
 
