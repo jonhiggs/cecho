@@ -15,7 +15,6 @@ function testSwitches() {
 }
 
 function testColouredStrings() {
-  __run --background="red" "blah"
   assertEquals "when --background=red" "2e15" "$(__run --background=red "blah"; __stdout_md5)"
   assertEquals "when --foreground=red" "af36" "$(__run --foreground=red "blah"; __stdout_md5)"
   assertEquals "when --black"          "8ba7" "$(__run --black "blah"; __stdout_md5)"
