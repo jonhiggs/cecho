@@ -204,7 +204,7 @@ function align_right() {
   local str_length=${#string}
   local str_start_col=$(( $COLS - $str_length ))
   for n in $(seq $str_start_col); do
-     printf " "
+    printf " "
   done
   echo "$@"
 }
