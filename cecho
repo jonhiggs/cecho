@@ -200,9 +200,9 @@ function align_centre() {
 
 function align_right() {
   string="$@"
-  [[ ! -z ${COLS} ]] || COLS=$(tput cols)
+  [[ ! -z ${COLUMNS} ]] || COLUMNS=$(tput cols)
   local str_length=${#string}
-  local str_start_col=$(( $COLS - $str_length ))
+  local str_start_col=$(( $COLUMNS - $str_length ))
   for n in $(seq $str_start_col); do
     printf " "
   done

@@ -52,7 +52,7 @@ function testInlineColourChanges() {
 }
 
 function testPositioning() {
-  export COLS=80
+  export COLUMNS=80
   assertEquals "when --center"         "ce57" "$(__run --center "blah"; __stdout_md5)"
   assertEquals "when --right"          "9deb" "$(__run --right "blah"; __stdout_md5)"
   assertEquals "when --margin-left=3"  "fea1" "$(__run --margin-left=3 "blah"; __stdout_md5)"
