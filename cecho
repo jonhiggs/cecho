@@ -223,6 +223,7 @@ function add_margins() {
   case $align in
     "left")
       if [[ $margin_left -ne 0 ]]; then
+        unset IFS
         for n in $(seq $margin_left); do m+=" "; done
       fi
 
