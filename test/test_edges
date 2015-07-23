@@ -12,7 +12,7 @@ function testVanilla() {
   assertEquals "inline with extra whitespace"         "fee7"  "$(__stdout_md5)"
 }
 
-function testQuoting() {
+function testInline() {
   __run --inline "{B_green}green{B_red} now it's red"
   assertEquals  "should not crap out with a single quote" "f87b" "$(__stdout_md5)"
 
@@ -21,6 +21,9 @@ function testQuoting() {
 
   __run --inline "{       }empty"
   assertEquals  "should remote empty blocks"              "0b7f" "$(__stdout_md5)"
+
+  __run --inline --centre "{F_red}blah"
+  assertEquals  "should centre text"                      "1a44" "$(__stdout_md5)"
 }
 
 function testMultiLine() {
