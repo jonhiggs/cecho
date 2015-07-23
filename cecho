@@ -166,7 +166,7 @@ function read_switch() {
     "--version")        echo ${VERSION} && exit 0                   ;;
     "-n")               line_ending=""                              ;;
     *)
-      if [[ -z "${string}" ]]; then
+      if [[ -z "${strings}" ]]; then
         strings=$1
       else
         strings="${strings} $1"
@@ -202,6 +202,7 @@ function align_right() {
   [[ ! -z ${COLUMNS} ]] || COLUMNS=$(tput cols)
   local str_length=${#string}
   local str_start_col=$(( $COLUMNS - $str_length ))
+  unset IFS
   for n in $(seq $str_start_col); do
     printf " "
   done
@@ -254,7 +255,9 @@ for arg in "$@"; do
   read_switch "${arg}"
 done
 
+IFS=''
 printf "${strings}" | while read string; do
+  [[ -z $string ]] && continue
   ${inline} && string=$(sub_inline_colour "${string}")
   ${doublespace} && string=$(doublespace "${string}")
   string=$(add_margins "${string}")
