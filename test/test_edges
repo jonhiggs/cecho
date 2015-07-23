@@ -8,8 +8,8 @@ function testVanilla() {
   __run --unknown "blah"
   assertEquals "print unsupported string"             "0dbe"  "$(__stdout_md5)"
 
-  __run --I "inline    extra whitespace"
-  assertEquals "inline with extra whitespace"         "fee7"  "$(__stdout_md5)"
+  __run --inline "inline    extra whitespace"
+  assertEquals "inline with extra whitespace"         "0394"  "$(__stdout_md5)"
 }
 
 function testInline() {
