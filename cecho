@@ -54,7 +54,7 @@ INLINE:
   Need to write documentation on inline colour substitutions.
 
 ENVIRONMENT_VARIABLES:
-  Need to write this documentation too.
+  COLUMNS           Manually override the width of your terminal.
 
 EXAMPLES:
   Show available colours:
