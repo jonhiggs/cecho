@@ -166,14 +166,13 @@ function read_switch() {
     "--version")        echo ${VERSION} && exit 0                   ;;
     "-n")               line_ending=""                              ;;
     *)
-      if [[ -z "${strings}" ]]; then
+      if [[ -z "${strings}\n" ]]; then
         strings=$1
       else
-        strings="${strings} $1"
+        strings="${strings}$1\n"
       fi
     ;;
   esac
-  strings+="\n"
 }
 
 function sub_inline_colour() {
