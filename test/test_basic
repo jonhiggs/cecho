@@ -18,7 +18,7 @@ function testColouredStrings() {
   assertEquals "when --background=red" "2e15" "$(__run --background=red "blah"; __stdout_md5)"
   assertEquals "when --foreground=red" "af36" "$(__run --foreground=red "blah"; __stdout_md5)"
   assertEquals "when --foreground=234" "b7d8" "$(__run --foreground=234 "blah"; __stdout_md5)"
-  assertEquals "when --black"          "8ba7" "$(__run --black "blah"; __stdout_md5)"
+  assertEquals "when --black"          "ab2f" "$(__run --black "blah"; __stdout_md5)"
   assertEquals "when --blue"           "f1ed" "$(__run --blue "blah"; __stdout_md5)"
   assertEquals "when --cyan"           "9eef" "$(__run --cyan "blah"; __stdout_md5)"
   assertEquals "when --dark-blue"      "c3da" "$(__run --dark-blue "blah"; __stdout_md5)"
@@ -35,9 +35,8 @@ function testColouredStrings() {
   assertEquals "when --light-red"      "2098" "$(__run --light-red "blah"; __stdout_md5)"
   assertEquals "when --light-yellow"   "6ab4" "$(__run --light-yellow "blah"; __stdout_md5)"
   assertEquals "when --magenta"        "0aa0" "$(__run --magenta "blah"; __stdout_md5)"
-  assertEquals "when --pink"           "e4cf" "$(__run --pink "blah"; __stdout_md5)"
   assertEquals "when --red"            "af36" "$(__run --red "blah"; __stdout_md5)"
-  assertEquals "when --white"          "e5c5" "$(__run --white "blah"; __stdout_md5)"
+  assertEquals "when --white"          "7f71" "$(__run --white "blah"; __stdout_md5)"
   assertEquals "when --yellow"         "3db9" "$(__run --yellow "blah"; __stdout_md5)"
 }
 

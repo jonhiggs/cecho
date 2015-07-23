@@ -25,7 +25,6 @@ OPTIONS:
   --background      Set the background colour.
   --foreground      Set the background colour.
 
-  --black           Shorthand for setting foreground to black.
   --blue            Shorthand for setting foreground to blue.
   --cyan            Shorthand for setting foreground to cyan.
   --dark-blue       Shorthand for setting foreground to dark-blue.
@@ -42,9 +41,7 @@ OPTIONS:
   --light-red       Shorthand for setting foreground to light-red.
   --light-yellow    Shorthand for setting foreground to light-yellow.
   --magenta         Shorthand for setting foreground to magenta.
-  --pink            Shorthand for setting foreground to pink.
   --red             Shorthand for setting foreground to red.
-  --white           Shorthand for setting foreground to white.
   --yellow          Shorthand for setting foreground to yellow.
 
   --help            This help.
@@ -79,7 +76,6 @@ exit 0
 
 function colour() {
   case "$1" in
-    "black")          echo "16" ;;
     "blue")           echo "4"  ;;
     "cyan")           echo "6"  ;;
     "dark-blue")      echo "17" ;;
@@ -97,10 +93,10 @@ function colour() {
     "light-red")      echo "9"  ;;
     "light-yellow")   echo "11" ;;
     "magenta")        echo "5"  ;;
-    "pink")           echo "9"  ;;
     "red")            echo "1"  ;;
-    "white")          echo "15" ;;
     "yellow")         echo "3"  ;;
+    "white")          echo "15" ;;
+    "black")          echo "0" ;;
     "reset")          tput sgr0 ;;
     *)                echo $1   ;;
   esac
@@ -127,13 +123,16 @@ function read_switch() {
 
   # set switch and value for alias options
   case "${switch}" in
-    "-b"|"--blue")      switch="--foreground"; value="blue"         ;;
-    "-c"|"--cyan")      switch="--foreground"; value="cyan"         ;;
-    "-g"|"--green")     switch="--foreground"; value="green"        ;;
-    "-G"|"--grey")      switch="--foreground"; value="grey"         ;;
-    "-m"|"--magenta")   switch="--foreground"; value="magenta"      ;;
-    "-r"|"--red")       switch="--foreground"; value="red"          ;;
-    "-y"|"--yellow")    switch="--foreground"; value="yellow"       ;;
+    "--black")          switch="--foreground"; value="black"        ;;
+    "--blue"|"-b")      switch="--foreground"; value="blue"         ;;
+    "--center"|"-C")    switch="--centre"                           ;;
+    "--cyan"|"-c")      switch="--foreground"; value="cyan"         ;;
+    "--dark-blue")      switch="--foreground"; value="dark-blue"    ;;
+    "--dark-gray")      switch="--foreground"; value="dark-gray"    ;;
+    "--dark-green")     switch="--foreground"; value="dark-green"   ;;
+    "--dark-grey")      switch="--foreground"; value="dark-grey"    ;;
+    "--green"|"-g")     switch="--foreground"; value="green"        ;;
+    "--grey"|"-G")      switch="--foreground"; value="grey"         ;;
     "--light-blue")     switch="--foreground"; value="light-blue"   ;;
     "--light-cyan")     switch="--foreground"; value="light-cyan"   ;;
     "--light-gray")     switch="--foreground"; value="light-gray"   ;;
@@ -142,31 +141,30 @@ function read_switch() {
     "--light-magenta")  switch="--foreground"; value="light-magenta";;
     "--light-red")      switch="--foreground"; value="light-red"    ;;
     "--light-yellow")   switch="--foreground"; value="light-yellow" ;;
-    "--dark-blue")      switch="--foreground"; value="dark-blue"    ;;
-    "--dark-gray")      switch="--foreground"; value="dark-gray"    ;;
-    "--dark-green")     switch="--foreground"; value="dark-green"   ;;
-    "--dark-grey")      switch="--foreground"; value="dark-grey"    ;;
+    "--magenta"|"-m")   switch="--foreground"; value="magenta"      ;;
+    "--red"|"-r")       switch="--foreground"; value="red"          ;;
     "--show-colors")    switch="--show-colours"                     ;;
-    "-C"|"--center")    switch="--centre"                           ;;
-    "-R")               switch="--right"                            ;;
+    "--white")          switch="--foreground"; value="white"        ;;
+    "--yellow"|"-y")    switch="--foreground"; value="yellow"       ;;
     "-I")               switch="--inline"                           ;;
+    "-R")               switch="--right"                            ;;
   esac
 
   # run through the real options
   case "${switch}" in
-    "--foreground")     foreground=$(colour_foreground ${value})    ;;
     "--background")     background=$(colour_background ${value})    ;;
     "--centre")         align="centre"                              ;;
-    "--right")          align="right"                               ;;
+    "--doublespace")    doublespace=true                            ;;
+    "--foreground")     foreground=$(colour_foreground ${value})    ;;
+    "--help")           usage                                       ;;
+    "--inline")         inline=true                                 ;;
     "--margin")         margin_left=${value}; margin_right=${value} ;;
     "--margin-left")    margin_left=${value};                       ;;
     "--margin-right")   margin_right=${value};                      ;;
-    "--doublespace")    doublespace=true                            ;;
+    "--right")          align="right"                               ;;
     "--show-colours")   swatch                                      ;;
-    "-n")               line_ending=""                              ;;
-    "--inline")         inline=true                                 ;;
-    "--help")           usage                                       ;;
     "--version")        echo ${VERSION} && exit 0                   ;;
+    "-n")               line_ending=""                              ;;
     *)
       if [[ -z "${string}" ]]; then
         string=$1
