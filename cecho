@@ -195,7 +195,7 @@ function colour_background() {
 }
 
 function align_centre() {
-  echo "$@" | fmt -c -w $(tput cols)
+  printf "$@" | fmt -c -w $(tput cols)
 }
 
 function align_right() {

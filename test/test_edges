@@ -23,6 +23,11 @@ function testQuoting() {
   assertEquals  "should remote empty blocks"              "0b7f" "$(__stdout_md5)"
 }
 
+function testMultiLine() {
+  __run --centre "blah\nblah"
+  assertEquals  "both lines should be centred."           "1a44" "$(__stdout_md5)"
+}
+
 # load and run shUnit2
 source $(dirname $0)/shunit/src/shunit2
 
