@@ -167,12 +167,13 @@ function read_switch() {
     "-n")               line_ending=""                              ;;
     *)
       if [[ -z "${string}" ]]; then
-        string=$1
+        strings=$1
       else
-        string="${string} $1"
+        strings="${strings} $1"
       fi
     ;;
   esac
+  strings+="\n"
 }
 
 function sub_inline_colour() {
@@ -253,9 +254,11 @@ for arg in "$@"; do
   read_switch "${arg}"
 done
 
-${inline} && string=$(sub_inline_colour "${string}")
-${doublespace} && string=$(doublespace "${string}")
-string=$(add_margins "${string}")
-[[ $align == "centre" ]] && string=$(align_centre "${string}")
-[[ $align == "right" ]] && string=$(align_right "${string}")
-printf -- "${foreground}${background}${string}$(tput sgr0)${line_ending}"
+printf "${strings}" | while read string; do
+  ${inline} && string=$(sub_inline_colour "${string}")
+  ${doublespace} && string=$(doublespace "${string}")
+  string=$(add_margins "${string}")
+  [[ $align == "centre" ]] && string=$(align_centre "${string}")
+  [[ $align == "right" ]] && string=$(align_right "${string}")
+  printf -- "${foreground}${background}${string}$(tput sgr0)${line_ending}"
+done
