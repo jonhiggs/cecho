@@ -25,6 +25,7 @@ OPTIONS:
   --background      Set the background colour.
   --foreground      Set the background colour.
 
+  --black           Shorthand for setting foreground to black.
   --blue            Shorthand for setting foreground to blue.
   --cyan            Shorthand for setting foreground to cyan.
   --dark-blue       Shorthand for setting foreground to dark-blue.
@@ -42,6 +43,7 @@ OPTIONS:
   --light-yellow    Shorthand for setting foreground to light-yellow.
   --magenta         Shorthand for setting foreground to magenta.
   --red             Shorthand for setting foreground to red.
+  --white           Shorthand for setting foreground to white.
   --yellow          Shorthand for setting foreground to yellow.
 
   --help            This help.
