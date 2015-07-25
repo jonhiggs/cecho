@@ -197,7 +197,16 @@ function colour_background() {
 }
 
 function align_centre() {
-  printf "$@" | fmt -c -w $(tput cols)
+  string="$@"
+  [[ ! -z ${COLS} ]] || COLS=$(tput cols)
+  local str_length=${#string}
+  local col_middle=$(( $COLS / 2 ))
+  local str_middle=$(( $str_length / 2 ))
+  local str_start_col=$(( $col_middle - $str_middle ))
+  for n in $(seq $str_start_col); do
+     printf " "
+  done
+  echo "$@"
 }
 
 function align_right() {
