@@ -200,9 +200,10 @@ function align_centre() {
   string="$@"
   [[ ! -z ${COLS} ]] || COLS=$(tput cols)
   local str_length=${#string}
-  local col_middle=$(( $COLS / 2 ))
-  local str_middle=$(( $str_length / 2 ))
-  local str_start_col=$(( $col_middle - $str_middle ))
+  local col_centre=$(( $COLS / 2 ))
+  local str_centre=$(( $str_length / 2 ))
+  local str_start_col=$(( $col_centre - $str_centre ))
+  unset IFS
   for n in $(seq $str_start_col); do
      printf " "
   done
@@ -275,7 +276,6 @@ printf -- "${strings}\n" | while read string; do
   ${doublespace} && string=$(doublespace "${string}")
   string=$(add_margins "${string}")
   #[[ $align == "centre" ]] && string=$(align_centre "${string}")
-  #[[ $align == "right" ]] && string=$(align_right "${string}")
-  echo "${string}"
+  [[ $align == "right" ]] && string=$(align_right "${string}")
   echo -e "${foreground}${background}${string}$(tput sgr0)"
 done

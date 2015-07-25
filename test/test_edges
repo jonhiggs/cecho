@@ -23,12 +23,12 @@ function testInline() {
   assertEquals  "should remote empty blocks"              "0b7f" "$(__stdout_md5)"
 
   __run --inline --centre "{F_red}blah"
-  assertEquals  "should centre text"                      "1a44" "$(__stdout_md5)"
+  assertEquals  "should centre text"                      "d1c3" "$(__stdout_md5)"
 }
 
 function testMultiLine() {
   __run --centre "blah\nblah"
-  assertEquals  "both lines should be centred."           "1a44" "$(__stdout_md5)"
+  assertEquals  "both lines should be centred."           "046c" "$(__stdout_md5)"
 }
 
 # load and run shUnit2
