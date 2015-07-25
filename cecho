@@ -69,7 +69,6 @@ EXAMPLES:
   Set foreground to red and center in terminal.
   $0 --centre --red "string to echo"
 
-
 EOF
 exit 0
 }
