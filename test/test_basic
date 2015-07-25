@@ -12,6 +12,15 @@ function testSwitches() {
 
   __run --version
   assertEquals "version stdout"             "0"                 "$(__stdout | grep -c -E '^v[0-9]+\.[0-9\.]+$' &> /dev/null; echo $?)"
+
+  __run unquoted string
+  assertEquals "an unquoted string"         "c4dc"      "$(__stdout_md5)"
+
+  __run "two" "strings"
+  assertEquals "two strings"                "ac44"      "$(__stdout_md5)"
+
+  __run "string with \n char"
+  assertEquals "string with \\n char"       "7ab0"      "$(__stdout_md5)"
 }
 
 function testColouredStrings() {

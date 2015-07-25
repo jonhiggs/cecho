@@ -165,13 +165,18 @@ function read_switch() {
     "--version")        echo ${VERSION} && exit 0                   ;;
     "-n")               line_ending=""                              ;;
     *)
-      if [[ -z "${strings}\n" ]]; then
-        strings=$1
+      string=$(unescape_string "$1")
+      if [[ -z "${strings}" ]]; then
+        strings="$string"
       else
-        strings="${strings}$1\n"
+        strings+="\ $string"
       fi
     ;;
   esac
+}
+
+function unescape_string() {
+  printf "%q\n" "$(echo -e "$@")" | sed "s/^\$\'//g" | sed "s/'$//g"
 }
 
 function sub_inline_colour() {
@@ -255,12 +260,13 @@ for arg in "$@"; do
 done
 
 IFS=''
-printf "${strings}" | while read string; do
-  [[ -z $string ]] && continue
+printf -- "${strings}\n" | while read string; do
+  [[ -z "$string" ]] && continue
   ${inline} && string=$(sub_inline_colour "${string}")
   ${doublespace} && string=$(doublespace "${string}")
   string=$(add_margins "${string}")
-  [[ $align == "centre" ]] && string=$(align_centre "${string}")
-  [[ $align == "right" ]] && string=$(align_right "${string}")
-  printf -- "${foreground}${background}${string}$(tput sgr0)${line_ending}"
+  #[[ $align == "centre" ]] && string=$(align_centre "${string}")
+  #[[ $align == "right" ]] && string=$(align_right "${string}")
+  echo "${string}"
+  echo -e "${foreground}${background}${string}$(tput sgr0)"
 done

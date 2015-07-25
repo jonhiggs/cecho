@@ -9,7 +9,7 @@ function testVanilla() {
   assertEquals "print unsupported string"             "0dbe"  "$(__stdout_md5)"
 
   __run --inline "inline    extra whitespace"
-  assertEquals "inline with extra whitespace"         "0394"  "$(__stdout_md5)"
+  assertEquals "inline with extra whitespace"         "b6d4"  "$(__stdout_md5)"
 }
 
 function testInline() {
