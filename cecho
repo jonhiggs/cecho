@@ -200,9 +200,9 @@ function colour_background() {
 
 function align_centre() {
   string="$@"
-  [[ ! -z ${COLS} ]] || COLS=$(tput cols)
+  [[ ! -z ${COLUMNS} ]] || COLUMNS=$(tput cols)
   local str_length=${#string}
-  local col_centre=$(( $COLS / 2 ))
+  local col_centre=$(( $COLUMNS / 2 ))
   local str_centre=$(( $str_length / 2 ))
   local str_start_col=$(( $col_centre - $str_centre ))
   unset IFS
