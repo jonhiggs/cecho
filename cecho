@@ -285,3 +285,4 @@ printf -- "${strings}\n" | while read string; do
 done
 
 ${reset} && tput sgr0
+printf -- "${line_ending}"
