@@ -4,7 +4,7 @@ source $(dirname $0)/functions.inc
 function testSwitches() {
   __run
   assertEquals "no_arguments exit status"   "0"                 "$status"
-  assertEquals "no_arguments stdout_md5"    "d41d"              "$(__stdout_md5)"
+  assertEquals "no_arguments stdout_md5"    "aba4"              "$(__stdout_md5)"
 
   __run --help
   assertEquals "help exit status"           "0"                 "$status"
@@ -20,7 +20,7 @@ function testSwitches() {
   assertEquals "two strings"                "ac44"      "$(__stdout_md5)"
 
   __run "string with \n char"
-  assertEquals "string with \\n char"       "7ab0"      "$(__stdout_md5)"
+  assertEquals "string with \\n char"       "40ef"      "$(__stdout_md5)"
 }
 
 function testColouredStrings() {

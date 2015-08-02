@@ -274,14 +274,17 @@ for arg in "$@"; do
 done
 
 IFS=''
+line=0
 printf -- "${foreground}${background}"
 printf -- "${strings}\n" | while read string; do
+  [[ $line -ne 0 ]] && printf -- "\n"
   [[ -z "$string" ]] && continue
   ${inline} && string=$(sub_inline_colour "${string}")
   ${doublespace} && string=$(doublespace "${string}")
   string=$(add_margins "${string}")
   [[ $align == "right" ]] && string=$(align_right "${string}")
   printf -- "${string}"
+  line=$(( $line + 1 ))
 done
 
 ${reset} && tput sgr0
