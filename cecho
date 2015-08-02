@@ -281,7 +281,7 @@ printf -- "${strings}\n" | while read string; do
   ${doublespace} && string=$(doublespace "${string}")
   string=$(add_margins "${string}")
   [[ $align == "right" ]] && string=$(align_right "${string}")
-  echo -e "${string}"
+  printf -- "${string}"
 done
 
 ${reset} && tput sgr0
