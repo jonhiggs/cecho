@@ -3,6 +3,8 @@
 ### Description
 Just like echo but colourful, formatted and stylish.
 
+![Look at this](examples.png)
+
 ### Requirements
 It should run on any Unix OS. If you notice any problems let me know.
 
