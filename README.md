@@ -54,13 +54,13 @@ It should run on any Unix OS. If you notice any problems let me know.
 
 ### Examples
   Show available colours:  
-  `./cecho --show-colours`
+  `cecho --show-colours`
 
   Set foreground to red:  
-  `./cecho --red "string to echo"`
+  `cecho --red "string to echo"`
 
   Set background to blue and foreground to white:  
-  `./cecho --background=blue --foreground=white "string to echo"`
+  `cecho --background=blue --foreground=white "string to echo"`
 
   Set the background to a specific colour:  
-  `./cecho --background=170 "string to echo"`
+  `cecho --background=170 "string to echo"`
