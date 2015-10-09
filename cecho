@@ -187,9 +187,9 @@ function unescape_string() {
 
 function sub_inline_colour() {
   string="$@"
-  string=$(echo "$string" | sed -E "s/{F_([^}]+)}/\$\(colour_foreground \1\)/g")
-  string=$(echo "$string" | sed -E "s/{B_([^}]+)}/\$\(colour_background \1\)/g")
-  string=$(echo "$string" | sed -E "s/{reset}/\$\(colour reset)/g")
+  string=$(echo "$string" | sed -E "s/\{F_([^}]+)\}/\$\(colour_foreground \1\)/g")
+  string=$(echo "$string" | sed -E "s/\{B_([^}]+)\}/\$\(colour_background \1\)/g")
+  string=$(echo "$string" | sed -E "s/\{reset\}/\$\(colour reset)/g")
   string=$(echo "$string" | sed -E 's/"/\\\"/g')
   eval "echo \"${string}\"" | sed 's/{\ *}//g'
 }
