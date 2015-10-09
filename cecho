@@ -71,6 +71,9 @@ EXAMPLES:
   Set foreground to red and center in terminal
   $0 --centre --red "string to echo"
 
+  Set foreground to green and background to gray for part of a line
+  $0 --inline "{F_green}{B_grey}string to{reset} echo"
+
 EOF
 exit 0
 }

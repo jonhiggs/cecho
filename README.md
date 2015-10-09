@@ -67,3 +67,6 @@ It should run on any Unix OS. If you notice any problems let me know.
 
   Set foreground to red and center in terminal.
   `cecho --centre --red "string to echo"`
+
+  Set foreground to green and background to gray for part of a line
+  `cecho --inline "{F_green}{B_grey}string to{reset} echo"`
