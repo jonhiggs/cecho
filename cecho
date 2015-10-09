@@ -68,7 +68,7 @@ EXAMPLES:
   Set the background to a specific colour
   $0 --background=170 "string to echo"
 
-  Set foreground to red and center in terminal.
+  Set foreground to red and center in terminal
   $0 --centre --red "string to echo"
 
 EOF

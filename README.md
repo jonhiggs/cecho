@@ -64,3 +64,6 @@ It should run on any Unix OS. If you notice any problems let me know.
 
   Set the background to a specific colour:  
   `cecho --background=170 "string to echo"`
+
+  Set foreground to red and center in terminal.
+  `cecho --centre --red "string to echo"`
