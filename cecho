@@ -101,7 +101,7 @@ function colour() {
     "yellow")         echo "3"  ;;
     "white")          echo "15" ;;
     "black")          echo "0" ;;
-    "reset")          tput sgr0 ;;
+    "reset")          echo -n "[m" ;;
     *)                echo $1   ;;
   esac
 }
