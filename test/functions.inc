@@ -9,14 +9,16 @@ function __stdout_md5() {
 }
 
 function __run() {
-  set -x
   ${cecho} "$@" > ${stdout_file} 2> ${stderr_file}
   status=$?
   stdout=$(cat ${stdout_file})
   stderr=$(cat ${stderr_file})
-  base64_stdout="$(cat ${stdout_file} | base64)"
-  base64_stderr="$(cat ${stderr_file} | base64)"
-  set +x
+  if [[ ${status} -ne 0 ]]; then
+    set -x
+    base64_stdout="$(cat ${stdout_file} | base64)"
+    base64_stderr="$(cat ${stderr_file} | base64)"
+    set +x
+  fi
 }
 
 function oneTimeSetUp() {
