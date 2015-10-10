@@ -22,7 +22,7 @@ function oneTimeSetUp() {
   if [[ -n ${realpath} ]]; then
     running_dir="$(${realpath} -- $(dirname $0))"
   else
-    running_dir="$(pwd)"
+    running_dir="$(pwd)/test"
   fi
 
   test_dir="$(mktemp -d -t cecho.XXX)"
