@@ -286,5 +286,5 @@ printf -- "${strings}\n" | while read string; do
   line=$(( $line + 1 ))
 done
 
-${reset} && tput sgr0
+${reset} && echo -n "[m"
 printf -- "${line_ending}"
