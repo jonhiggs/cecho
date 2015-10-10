@@ -9,7 +9,7 @@ for arg in $@; do
 done
 
 for test in ${dir}/test_*; do
-  [[ "${test}" == './test_256' ]] && ! ${colours} && continue
+  [[ "${test}" =~ test_256$ ]] && ! ${colours} && continue
 
   echo -n ${test}
   ./${test} &> ${tmpfile}
