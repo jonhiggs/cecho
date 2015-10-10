@@ -1,4 +1,4 @@
-MD5_PATH=$(which md5 || which md5sum)
+MD5_PATH=$( ( which md5 || which md5sum ) 2> /dev/null )
 
 function __stdout() {
   cat ${stdout_file}
@@ -16,7 +16,7 @@ function __run() {
 }
 
 function oneTimeSetUp() {
-  realpath="$(which realpath || which grealpath)"
+  realpath="$( (which realpath || which grealpath ) 2> /dev/null)"
   if [[ -n ${realpath} ]]; then
     running_dir="$(${realpath} -- $(dirname $0))"
   else
