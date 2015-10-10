@@ -25,7 +25,7 @@ function oneTimeSetUp() {
     running_dir="$(pwd)"
   fi
 
-  test_dir="$(${realpath} -- $(mktemp -d -t cecho.XXX))"
+  test_dir="$(mktemp -d -t cecho.XXX)"
   cecho="${running_dir}/../cecho"
   stdout_file="${test_dir}/stdout"
   stderr_file="${test_dir}/stderr"
