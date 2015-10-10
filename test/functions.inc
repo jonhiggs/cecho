@@ -13,12 +13,10 @@ function __run() {
   status=$?
   stdout=$(cat ${stdout_file})
   stderr=$(cat ${stderr_file})
-  if [[ ${status} -ne 0 ]]; then
-    set -x
-    base64_stdout="$(cat ${stdout_file} | base64)"
-    base64_stderr="$(cat ${stderr_file} | base64)"
-    set +x
-  fi
+  set -x
+  base64_stdout="$(cat ${stdout_file} | base64)"
+  base64_stderr="$(cat ${stderr_file} | base64)"
+  set +x
 }
 
 function oneTimeSetUp() {
