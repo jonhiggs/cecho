@@ -65,7 +65,7 @@ function testPositioning() {
   assertEquals "when --right"          "9deb" "$(__run --right "blah"; __stdout_md5)"
   assertEquals "when --margin-left=3"  "fea1" "$(__run --margin-left=3 "blah"; __stdout_md5)"
   assertEquals "when --margin-right=3" "cb39" "$(__run --margin-right=3 "blah"; __stdout_md5)"
-  assertEquals "when --margin=3"       "cb39" "$(__run --margin=3 "blah"; __stdout_md5)"
+  assertEquals "when --margin=3"       "fea1" "$(__run --margin=3 "blah"; __stdout_md5)"
 }
 
 function testDoublespace() {
