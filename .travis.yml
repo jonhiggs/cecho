@@ -1,3 +1,3 @@
 language: bash
 script:
-  - bash ./test/test
+  - bash ./test/test --no256
