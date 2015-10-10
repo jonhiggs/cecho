@@ -1,3 +1,5 @@
 language: bash
 script:
   - bash ./test/test --no256
+notifications:
+  email: false
