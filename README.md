@@ -1,3 +1,5 @@
+![](https://travis-ci.org/jonhiggs/cecho.svg)
+
 # cecho
 
 ### Description
