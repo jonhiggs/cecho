@@ -9,12 +9,10 @@ function __stdout_md5() {
 }
 
 function __run() {
-  set -x
   ${cecho} "$@" > ${stdout_file} 2> ${stderr_file}
   status=$?
   stdout=$(cat ${stdout_file})
   stderr=$(cat ${stderr_file})
-  set +x
 }
 
 function oneTimeSetUp() {
