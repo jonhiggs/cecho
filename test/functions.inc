@@ -1,9 +1,11 @@
+MD5_PATH=$(which md5 || which md5sum)
+
 function __stdout() {
   cat ${stdout_file}
 }
 
 function __stdout_md5() {
-  __stdout | md5 | grep -o ^.... | head -n1
+  __stdout | ${MD5_PATH} | grep -o ^.... | head -n1
 }
 
 function __run() {
