@@ -10,6 +10,7 @@ for test in ${dir}/test_*; do
     echo " ok"
   else
     cat ${tmpfile}
+    exit 1
   fi
 done
 
