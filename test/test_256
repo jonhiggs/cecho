@@ -2,7 +2,6 @@
 source $(dirname $0)/functions.inc
 
 function test256Colours() {
-  assertEquals "when --foreground=234" "b7d8" "$(__run --foreground=234 "blah"; __stdout_md5)"
   assertEquals "when --dark-blue"      "c3da" "$(__run --dark-blue "blah"; __stdout_md5)"
   assertEquals "when --dark-gray"      "a0b8" "$(__run --dark-gray "blah"; __stdout_md5)"
   assertEquals "when --dark-green"     "4bdd" "$(__run --dark-green "blah"; __stdout_md5)"
@@ -15,7 +14,6 @@ function test256Colours() {
   assertEquals "when --light-yellow"   "6ab4" "$(__run --light-yellow "blah"; __stdout_md5)"
   assertEquals "when --white"          "7f71" "$(__run --white "blah"; __stdout_md5)"
 }
-
 
 # BROKEN TESTS
 # ./cecho --right --margin-right=79 "blah blah blah blahsoei soeifj osei josei "
