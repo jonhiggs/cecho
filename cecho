@@ -171,7 +171,7 @@ function read_switch() {
     "--no-reset")       reset=false                                 ;;
     "-n")               line_ending=""                              ;;
     *)
-      string=$(unescape_string "$1")
+      string="$1"
       if [[ -z "${strings}" ]]; then
         strings="$string"
       else
@@ -179,10 +179,6 @@ function read_switch() {
       fi
     ;;
   esac
-}
-
-function unescape_string() {
-  printf "%q\n" "$(echo -e "$@")" | sed "s/^\$\'//g" | sed "s/'$//g"
 }
 
 function sub_inline_colour() {
