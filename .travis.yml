@@ -3,3 +3,6 @@ script:
   - bash ./test/test --no256
 notifications:
   email: false
+os:
+  - linux
+  - osx
